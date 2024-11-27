@@ -11,8 +11,9 @@ public class OrderOfInitialization {
             System.out.println("Static initializer class level " + Chick.STATIC);
 
         }
-        private String name = "Fluffy";
+        private String name;
         {
+            name = "Fluffy";
             System.out.println("Setting the field "+ this.name);
         }
 

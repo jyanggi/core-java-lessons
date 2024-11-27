@@ -1,0 +1,6 @@
+Hello,
+World !
+Try
+With
+Resource
+Example

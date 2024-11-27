@@ -1,0 +1,16 @@
+.project
+target/
+.classpath
+.settings
+*org.eclipse*
+.externalToolBuilders
+/bin
+.metadata
+*.iml
+*.ipr
+*.iws
+build.sh
+*.zip
+/out/
+.idea
+src/lessons/v8/introtojava

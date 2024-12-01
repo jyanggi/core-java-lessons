@@ -1,8 +1,11 @@
 package lessons.v8.oca.chapter5.package2;
 
+import lessons.v8.oca.chapter5.MyInterface2;
 import lessons.v8.oca.chapter5.package1.Parent;
 
-class Child extends Parent {
+import java.io.IOException;
+
+class Child extends Parent implements MyInterface2 {
 
     String childString;
 
@@ -25,6 +28,11 @@ class Child extends Parent {
     }
 
     @Override
+    public String callThrow() {
+        return "S";
+    }
+
+    @Override
     public  void print(){
         super.print();
         System.out.println(this.childString);
@@ -40,4 +48,8 @@ class Child extends Parent {
 
     }
 
+    @Override
+    public void callMyMethod() {
+        System.out.println("Child callMyMethod");
+    }
 }

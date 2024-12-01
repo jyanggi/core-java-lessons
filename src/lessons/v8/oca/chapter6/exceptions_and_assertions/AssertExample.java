@@ -12,6 +12,7 @@ public class AssertExample {
         assert 'Z' == 90 : "'Z' == 90";
         assert "String" == "String" : "\"String\"==\"String\"";
         assert (2 == 1.0) : "2 == 1.0";
+        assert true == false: "true == false";
 
     }
 

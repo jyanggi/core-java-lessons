@@ -22,6 +22,8 @@ public class FunctionSamples {
         System.out.println(testFunc.get("Hello", 123, true));
         System.out.println(testFunc2.get("Ey", john, jane));
 
+
+
     }
 
 }

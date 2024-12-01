@@ -1,4 +1,4 @@
-package lessons.v8.oca.chapter4.functional.stream;
+package lessons.v8.ocp.chapter4;
 
 import static java.lang.System.out;
 
@@ -13,7 +13,7 @@ public class StreamSample2 {
         StringBuilder builder = Stream.of("String", "Builder").collect(
                 StringBuilder::new, StringBuilder::append,
                 StringBuilder::append);
-        out.println(builder.toString());
+        out.println(builder);
 
         TreeSet<String> treeSet = Stream
                 .of("Tree", "Set", "Tree", "Set", "Tree", "Set")

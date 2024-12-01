@@ -1,4 +1,4 @@
-package lessons.v8.oca.chapter4.functional.stream;
+package lessons.v8.ocp.chapter4;
 
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -12,11 +12,16 @@ public class StreamSample {
         out.println(Stream.generate(Math::random).limit(10).filter(d -> d > .5)
                 .collect(Collectors.mapping(String::valueOf,
                         Collectors.joining(","))));
+
         Stream<Integer> oddNumbers = Stream.iterate(1, n -> n + 2).limit(10000);
+
         Optional<Integer> maximum = oddNumbers.max(Integer::compareTo);
+
         maximum.ifPresent(out::println);
+
         Stream.of(1, 3, 4, 5, 6, 7, 10, 200, 99).findAny()
                 .ifPresent(out::println);
+
         Stream.of("First", "Hello", "World").findFirst()
                 .ifPresent(out::println);
         out.println(Stream.of("Jest", "Test", "").anyMatch(String::isBlank));

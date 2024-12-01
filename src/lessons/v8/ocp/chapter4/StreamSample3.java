@@ -1,4 +1,4 @@
-package lessons.v8.oca.chapter4.functional.stream;
+package lessons.v8.ocp.chapter4;
 
 import static java.lang.System.out;
 
@@ -6,6 +6,7 @@ import java.util.Arrays;
 
 import static java.util.stream.Collectors.*;
 
+import java.util.Comparator;
 import java.util.regex.Pattern;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -16,17 +17,6 @@ import java.util.function.ToIntFunction;
 public class StreamSample3 {
 
     public static void main(String[] args) {
-        Pattern p = Pattern.compile("([a-zA-Z])(\\1)",
-                Pattern.DOTALL | Pattern.CASE_INSENSITIVE);
-
-        String res = "";
-/*
-        while(p.matcher("aaabccddd").find()){
-            out.println("Matched");
-            res = p.matcher("aaabccddd").replaceAll("");
-        }*/
-        out.println(res);
-        out.println("aaabccddd".replaceAll("([a-zA-Z])(\\1)",""));
 
         Stream.of("Hello", "World", "!!!").map(String::length)
                 .forEach(out::print);
@@ -54,11 +44,7 @@ public class StreamSample3 {
                 .collect(toMap(String::length, String::toUpperCase, (s1, s2) -> String.format("%s, %s ", s1, s2))
         ));
 
- /*               .collect(toMap(String::length,
-                        String::toUpperCase,
-                        (s1, s2) -> String.format("%s , %s ", s1, s2),
-                        TreeMap::new)));
-*/
+
         out.println(Stream.of("Tiger", "Lion", "Dragon", "Cat", "Owl")
                 .collect(groupingBy(String::length)));
 
@@ -70,10 +56,8 @@ public class StreamSample3 {
 
         out.println(Stream.of("Tiger", "Lion", "Dragon", "Cat", "Owl")
                 .collect(partitioningBy(s -> s.contains("i"))));
-/*
-        out.println(Stream.of("Tiger", "Lion", "Dragon", "Cat", "Owlllll")
-                .collect(groupingBy(String::length, mapping(s -> s.charAt(0),
-                        minBy(Comparator.naturalOrder())))));*/
+
+
 
         Stream<String> str = Stream.empty();
         out.println(str.collect(groupingBy(s -> s.length() > 1)));

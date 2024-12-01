@@ -27,12 +27,13 @@ public class NestedClasses {
                     }
                     Print p = new Print();
                     p.print();
-                    new Abs(){
+                    Abs abs = new Abs(){
                         @Override
                         void printAbs() {
                             System.out.println("Abstract");
                         }
-                    }.printAbs();
+                    };
+                    abs.printAbs();
                 }
             }
         }

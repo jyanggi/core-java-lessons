@@ -7,7 +7,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class EqualsHashCodeToString {
-    static abstract class Defaults {
+    public static abstract class Defaults {
 
         @Override
         public boolean equals(Object obj) {
@@ -46,6 +46,7 @@ public class EqualsHashCodeToString {
             return String.format("%s[%s]", this.getClass().getSimpleName(),
               Arrays.stream(this.getClass().getDeclaredFields()).map(f -> {
                     try {
+                        f.setAccessible(true);
                         return String.format("%s=%s", f.getName(), f.get(this));
                     } catch (IllegalAccessException e) {
                         return String.format("%s=null", f.getName());

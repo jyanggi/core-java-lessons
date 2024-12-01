@@ -5,6 +5,11 @@ public class CounterSingleton {
 	private static volatile CounterSingleton INSTANCE; //thread safe
 	private int count;
 
+//	static{
+	 // if you do not want to lazy load it
+//		INSTANCE = new CounterSingleton();
+//	}
+
 	private CounterSingleton() {
 		// to override implicit public Constructor
 	}

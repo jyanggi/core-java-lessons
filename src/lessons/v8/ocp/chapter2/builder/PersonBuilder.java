@@ -1,8 +1,10 @@
 package lessons.v8.ocp.chapter2.builder;
 
+import static lessons.v8.ocp.chapter1.EqualsHashCodeToString.Defaults;
+
 public class PersonBuilder {
 
-    public static enum Gender {
+    public  enum Gender {
         MALE, FEMALE
     };
 
@@ -41,7 +43,7 @@ public class PersonBuilder {
         return new Person(firstName, middleName, lastName, age, gender);
     }
 
-    public static class Person {
+    public static class Person  extends Defaults {
 
         private final String firstName;
         private final String middleName;
@@ -78,11 +80,5 @@ public class PersonBuilder {
             return gender;
         }
 
-        @Override
-        public String toString() {
-            return "Person [firstName=" + firstName + ", middleName="
-                    + middleName + ", lastName=" + lastName + ", age=" + age
-                    + ", gender=" + gender + "]";
-        }
     }
 }

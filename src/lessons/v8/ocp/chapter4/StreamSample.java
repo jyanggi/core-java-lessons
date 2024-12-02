@@ -1,6 +1,8 @@
 package lessons.v8.ocp.chapter4;
 
+import java.util.OptionalDouble;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 import java.util.Optional;
 
@@ -32,5 +34,11 @@ public class StreamSample {
                 .ifPresent(out::println);
         out.println(Stream.of(45, 6, 78, -9, 54).reduce(0, Integer::sum,
                 Integer::sum));
+
+
+        OptionalDouble od = IntStream.of(1,2,3).average();
+        od.ifPresent(out::println);
+        out.println(od.getAsDouble());
+        out.println(IntStream.of(1,2,3).summaryStatistics());
     }
 }

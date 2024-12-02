@@ -2,6 +2,7 @@ package lessons.v8.ocp.chapter7;
 
 import static java.lang.System.out;
 
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -11,7 +12,7 @@ import java.util.concurrent.TimeoutException;
 
 public class ExecutorServiceSample {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException{
 
         ExecutorService service = null;
         try {
@@ -26,13 +27,21 @@ public class ExecutorServiceSample {
             });
             service.execute(() -> out.println("Printing i"));
             out.println("end");
+           List<Future<String>> results = service.invokeAll(List.of(()-> "A",()-> "B",()-> "C"));
+            for (Future<String> result : results) {
+                String s = result.get(20, TimeUnit.MILLISECONDS);
+                out.println(s);
+            }
 
         } catch (InterruptedException | ExecutionException
                 | TimeoutException e) {
             e.printStackTrace();
         } finally {
-            if (service != null)
+            if (service != null){
                 service.shutdown();
+                service.awaitTermination(1,TimeUnit.MINUTES);
+                out.println(service.isTerminated());
+            }
         }
 
     }

@@ -4,12 +4,28 @@ import static java.lang.System.out;
 
 public class ThreadSample {
 
-    public static void main(String[] args) {
+    private static int counter = 0;
+
+    public static void main(String[] args) throws InterruptedException{
 
         new Thread(new MyRunnable()).start();
         new MyThread().start();
         new Thread(() -> out.println("FunctionalInterface Runnable.run()"))
                 .start();
+
+        new Thread(()->{
+            for (int i = 0; i < 100; i++){
+                ThreadSample.counter+=1;
+            }
+            System.out.println("Thread  finished: "+ counter);
+        }).start();
+
+        while(ThreadSample.counter < 100){
+            System.out.println("Thread not finished: "+ counter);
+            Thread.sleep(1000L);
+        }
+
+
 
     }
 

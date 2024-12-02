@@ -1,4 +1,4 @@
-package lessons.v8.oca.chapter6.exceptions_and_assertions;
+package lessons.v8.oca.chapter6;
 
 public class SubClassUncheckedException extends RuntimeException {
 

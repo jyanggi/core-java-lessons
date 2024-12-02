@@ -1,4 +1,4 @@
-package lessons.v8.oca.chapter6.exceptions_and_assertions;
+package lessons.v8.ocp.chapter6;
 
 public class AssertExample {
 
@@ -12,7 +12,6 @@ public class AssertExample {
         assert 'Z' == 90 : "'Z' == 90";
         assert "String" == "String" : "\"String\"==\"String\"";
         assert (2 == 1.0) : "2 == 1.0";
-        assert true == false: "true == false";
 
     }
 

@@ -20,7 +20,9 @@ public class UnsafeIntegerSample {
         IntStream.range(100, 110).forEach(val -> {
             service.submit(() -> {
                 try {
-                    Thread.sleep(val);
+                    int randomSleep = ((int)(Math.random()* val));
+                    out.println("Random sleep:"+ randomSleep);
+                    Thread.sleep(randomSleep);
                     out.println(++integer);
                 } catch (InterruptedException e) {
                     e.printStackTrace();

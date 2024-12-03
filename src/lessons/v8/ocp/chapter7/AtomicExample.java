@@ -1,5 +1,6 @@
 package lessons.v8.ocp.chapter7;
 
+import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -21,7 +22,9 @@ public class AtomicExample {
         IntStream.range(100, 110).forEach(val -> {
             service.submit(() -> {
                 try {
-                    Thread.sleep(val);
+                    int randomSleep = ((int)(Math.random()* val));
+                    out.println("Random sleep:"+ randomSleep);
+                    Thread.sleep(randomSleep);
                     out.println(integer.addAndGet(1));
                 } catch (InterruptedException e) {
                     e.printStackTrace();

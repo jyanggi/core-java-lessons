@@ -15,9 +15,12 @@ public class FileExample {
         File file = new File("foo\bar\test.txt");
 
         out.println(file.exists());
-        File sample = new File("C:\\Users\\johhny\\.m2");
+        File sample = new File("D:\\Downloads");
         out.println("\t" + sample.getParent());
         printTree(sample);
+        File child  = new File(sample.getParent(), "\\a\\b");
+        out.println("\t" + child.getParent());
+        out.println("\t" + child);
 
     }
 

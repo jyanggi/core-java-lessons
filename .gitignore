@@ -12,5 +12,7 @@ target/
 build.sh
 *.zip
 /out/
+/myDB/
+*.log
 .idea
 src/lessons/v8/introtojava

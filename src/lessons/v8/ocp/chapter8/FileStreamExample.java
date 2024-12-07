@@ -23,13 +23,14 @@ public class FileStreamExample {
 
     public static void copyFile(File source, File destination) {
         int sentinel = -1;
-        int val = 0;
+        int val;
         byte[] bytes = new byte[1024];
         try (InputStream is = new BufferedInputStream(
                 new FileInputStream(source));
                 OutputStream os = new BufferedOutputStream(
                         new FileOutputStream(destination))) {
             while ((val = is.read(bytes)) != sentinel) {
+                out.println(val);
                 os.write(bytes, 0, val);
                 os.flush();
                 for (int i = 0; i < val; i++) {

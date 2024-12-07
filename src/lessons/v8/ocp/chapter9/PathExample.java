@@ -1,43 +1,48 @@
 package lessons.v8.ocp.chapter9;
 
-import static java.lang.System.getProperty;
 import static java.lang.System.out;
 
 import java.io.File;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.channels.Channels;
+import java.nio.channels.ReadableByteChannel;
+import java.nio.file.*;
 
 public class PathExample {
 
-    public static void main(String[] args) {
-        String[] sampleArray = { "John" };
-        Path sample = Paths.get("C:", "Users", "johhny", ".m2");
+    public static void main(String[] args) throws URISyntaxException, IOException {
+        Path sample = Paths.get("D:", "Downloads");
         out.println(sample.toUri());
+        out.println(Files.exists(sample));
         sample.getFileSystem().getFileStores().forEach(out::println);
-
         out.println("\t" + sample.getParent());
+        Path uriPath = Paths.get(new URI("file://D:/Downloads"));
+        uriPath.getFileSystem().getFileStores().forEach(out::println);
+        final String site = "https://yanguasminds.com/";
+        URL siteUrl = new URL(site);
+        ReadableByteChannel rbc = Channels.newChannel(siteUrl.openStream());
+        String htmlOutputPath = "./resources/nio2/information.html";
+        FileOutputStream fos = new FileOutputStream(htmlOutputPath);
+        fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
 
-//        printTree(sample);
 
+        Path path = Paths.get(htmlOutputPath);
+        Files.copy(path, Paths.get("./resources/nio2/information-copy.html"),StandardCopyOption.REPLACE_EXISTING);
+
+        Files.readAllLines(path).forEach(out::println);
+        out.println(Files.getOwner(path));
+        out.println(Files.getLastModifiedTime(path));
+
+        Path walkPath = Paths.get("./resources/");
+
+        Files.walk(walkPath).map(Path::toAbsolutePath).map(Path::normalize).forEach(out::println);
+        Files.list(walkPath).filter(Files::isDirectory).forEach(out::println);
     }
 
-    private static void printTree(File f) {
-        if (f.listFiles() == null) {
-            out.println("\t\t|");
-            out.println("\t\t----" + f);
-            if (f.isFile()) {
-                out.println("\t\t");
-                System.out.println("\t\t    File size: " + f.length());
-                System.out.println(
-                        "\t\t    File LastModified: " + f.lastModified());
-            }
-
-            return;
-        }
-        out.println("\t|");
-        out.println("\t----" + f);
-        // Arrays.asList(f.listFiles()).forEach(FileExample::printTree);
-
-    }
 
 }

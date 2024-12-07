@@ -14,7 +14,7 @@ public class InputStreamExample {
 
         try (InputStream inputStream = new BufferedInputStream(
                 new FileInputStream(fileName))) {
-            int val = 0;
+            int val;
             int count = 0;
             int markCount = 7;
             while ((val = inputStream.read()) != -1) {

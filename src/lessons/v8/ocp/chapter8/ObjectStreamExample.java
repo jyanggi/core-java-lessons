@@ -45,7 +45,7 @@ public class ObjectStreamExample {
             while (true) {
                 Object object = is.readObject();
                 if (object instanceof Person)
-                    out.println(((Person) object));
+                    out.println(object);
             }
 
         } catch (EOFException eof) {
